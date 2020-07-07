@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TextTranslation">
+    tools:context=".ShowHistoryTextTranslation">
 
 
     <LinearLayout
@@ -16,10 +16,17 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-       android:layout_weight="0.5"/>
+       android:layout_weight="0.5"
+        android:layout_gravity="right"></LinearLayout>
 
 
-    <LinearLayout
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right"
+            android:background="@android:color/black" />
+
+        <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="11"
@@ -51,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="23sp"
+            android:background="#2196F3"
             android:text="No Text Translation Available" />
 
         <View
@@ -66,7 +74,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5">
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@android:color/black"
+                android:layout_gravity="end"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

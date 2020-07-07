@@ -34,6 +34,8 @@ public class TextAugmenter extends AppCompatActivity {
         setContentView(R.layout.activity_text_augmenter);
 
 
+
+
         inputLanguage=(Button)findViewById(R.id.inputLanguage);
         outputLanguage=(Button)findViewById(R.id.outputLanguage);
         camera=(Button)findViewById(R.id.camera);

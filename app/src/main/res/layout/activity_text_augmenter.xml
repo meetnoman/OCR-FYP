@@ -7,7 +7,8 @@
     tools:context="com.example.translator.TextAugmenter"
 
     android:weightSum="12"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/AliceBlue">
 
 
     <LinearLayout
@@ -22,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/buttonbackdound"
             android:drawableEnd="@drawable/ic_arrow_drop_down"
             android:onClick="OnClickMethod"
             android:text="English"
@@ -41,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/buttonbackdound"
             android:drawableRight="@drawable/ic_arrow_drop_down"
             android:onClick="OnClickMethod"
             android:text="Urdu"
@@ -93,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:background="@android:color/transparent"
+            android:background="@drawable/buttonbackdound"
             android:drawableTint="@color/colorPrimary"
             android:drawableTop="@drawable/ic_live"
             android:onClick="OnClickMethod"
@@ -110,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:background="@android:color/transparent"
+            android:background="@drawable/buttonbackdound"
             android:drawableTint="@color/colorPrimary"
             android:drawableTop="@drawable/ic_camera"
             android:onClick="OnClickMethod"
@@ -160,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity=""
                 android:layout_weight="3"
-                android:background="@android:color/transparent"
+                android:background="@drawable/buttonbackdound"
                 android:drawableTint="@color/colorPrimary"
                 android:drawableTop="@drawable/ic_history"
                 android:onClick="OnClickMethod" />

@@ -28,7 +28,7 @@ public class TextEnterTranslation extends AppCompatActivity {
 
     EditText textExtract;
     TextView textTranslation;
-    Button finish;
+    Button translate;
     TextAugmenter textAugmenter;
 
     @Override
@@ -38,13 +38,14 @@ public class TextEnterTranslation extends AppCompatActivity {
 
         textExtract=findViewById(R.id.textExtract);
         textTranslation=findViewById(R.id.textTranslate);
-        finish=findViewById(R.id.finish);
+        translate=findViewById(R.id.translate);
 
           textAugmenter=new TextAugmenter();
 
-        textExtract.setHint("Enter Text ("+textAugmenter.getAbbrevation( LanguageRemindHelper.getInstance().getInputLanguage())+")");
+        textExtract.setHint("Enter Text Only (English)");
         textTranslation.setText("Translation ("+textAugmenter.getAbbrevation(LanguageRemindHelper.getInstance().getOutputLanguage())+")");
 
+      /*
         textExtract.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -62,17 +63,13 @@ public class TextEnterTranslation extends AppCompatActivity {
                 startTranslation(textExtract.getText().toString());
             }
         });
+*/
 
-
-        finish.setOnClickListener(new View.OnClickListener() {
+        translate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),TextTranslation.class);
-                intent.putExtra("textExtracted",textExtract.getText().toString());
-                intent.putExtra("textTranslation",textTranslation.getText().toString());
-                startActivity(intent);
+                startTranslation(textExtract.getText().toString());
 
-                saveData(textExtract.getText().toString(),textTranslation.getText().toString());
 
             }
         });
@@ -125,7 +122,7 @@ public class TextEnterTranslation extends AppCompatActivity {
     private void translateText(final String text, final String lang) {
 
 
-        int inputLanguageCode = FirebaseTranslateLanguage.languageForLanguageCode(LanguageRemindHelper.getInstance().getInputLanguage());
+        int inputLanguageCode = FirebaseTranslateLanguage.languageForLanguageCode("en");
 
         //int targetL = targetLangSelector.getSelectedItemPosition();
         // int code = FirebaseTranslateLanguage.languageForLanguageCode(allLanguagesCode.get(targetL));
@@ -156,6 +153,8 @@ public class TextEnterTranslation extends AppCompatActivity {
                                                     public void onSuccess(@NonNull String translatedText) {
 
                                                         textTranslation.setText(translatedText);
+                                                        saveData(textExtract.getText().toString(),translatedText);
+
                                                     }
                                                 })
                                         .addOnFailureListener(
@@ -189,9 +188,9 @@ public class TextEnterTranslation extends AppCompatActivity {
         boolean flag=databaseHelper.storeEnterdTextTranslation(textExtracted,textTranslation,textAugmenter.getAbbrevation( LanguageRemindHelper.getInstance().getInputLanguage()),textAugmenter.getAbbrevation( LanguageRemindHelper.getInstance().getOutputLanguage()));
 
         if (flag){
-            Toast.makeText(getApplicationContext(),"Text Stored"+flag,Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(),"Text Stored"+flag,Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(getApplicationContext(),"OOOPS No"+flag,Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(getApplicationContext(),"OOOPS No"+flag,Toast.LENGTH_SHORT).show();
         }
     }
 

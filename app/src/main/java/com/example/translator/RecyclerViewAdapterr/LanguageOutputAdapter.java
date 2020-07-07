@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.translator.Helper.LanguageRemindHelper;
 import com.example.translator.R;
+import com.example.translator.TextAugmenter;
 
 import java.util.List;
 
@@ -43,9 +45,17 @@ public class LanguageOutputAdapter extends RecyclerView.Adapter<LanguageOutputAd
         int down=mDownload.get(position);
         holder.outputLanguage.setText(lang);
         if (down==1){
-            holder.outputLanguage.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+            TextAugmenter obj= new TextAugmenter();
 
-        }else {
+
+            if (lang.equalsIgnoreCase(obj.getAbbrevation(LanguageRemindHelper.getInstance().getOutputLanguage()))){
+                holder.outputLanguage.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+
+            }else {
+                holder.outputLanguage.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check_black, 0);
+            }
+        }
+        else {
             holder.outputLanguage.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_file_download, 0);
         }
 

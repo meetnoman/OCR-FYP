@@ -3,6 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="blackOpacity">#80000000 </color>
-
+    <color name="blackOpacity">#8C000000</color>
+    <color name="blackOpacityLight">#4D000000</color>
+    <color name="black">#000000</color>
+     <color name="blue">#802196F3</color>
+    <color name="blueOpacity">#4D7EBCF0</color>
+    <color name="AliceBlue">#f0f8ff</color>
+    <color name="Azure"> 	 #f0ffff</color>
 </resources>

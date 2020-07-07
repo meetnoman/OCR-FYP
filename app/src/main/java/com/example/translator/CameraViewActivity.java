@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -117,7 +116,7 @@ public class CameraViewActivity extends AppCompatActivity {
                 cameraView.stop();
 
 
-                Intent intent = new Intent(getApplicationContext(), ImageViewActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TextExtracted.class);
                 startActivity(intent);
 
 
@@ -142,7 +141,7 @@ public class CameraViewActivity extends AppCompatActivity {
         Bitmap bitmap;
         if (requestCode == galleryCode && data != null) {
 
-            Intent intent = new Intent(getApplicationContext(), ImageViewActivity.class);
+            Intent intent = new Intent(getApplicationContext(), TextExtracted.class);
             //this.startActivity(intent);
 
             Uri path = data.getData();

@@ -56,11 +56,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.translation.setText(data.get("inputLanguage")+" To "+data.get("outputLanguage")+" Translation");
 
             if (image.get("image")==null){
-
+                holder.imageView.setVisibility(View.GONE);
                 holder.textEnter.setVisibility(View.VISIBLE);
                 holder.textEnter.setText(data.get("text"));
-                holder.imageView.setVisibility(View.GONE);
+
             }else {
+                holder.textEnter.setVisibility(View.GONE);
+                holder.imageView.setVisibility(View.VISIBLE);
                 holder.imageView.setImageBitmap(image.get("image"));
             }
 
@@ -110,9 +112,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
                 else if (view.getId()==delete.getId()){
                     clickListener.onDeleteItemClick(getAdapterPosition());
-                   mData.remove(getAdapterPosition());
-                   mImage.remove(getAdapterPosition());
-                   notifyDataSetChanged();
+
+
+                    mData.remove(getAdapterPosition() );
+                   mImage.remove(getAdapterPosition() );
+
+                    notifyDataSetChanged();
                      //Toast.makeText( view.getContext(),"Delete Position:",Toast.LENGTH_SHORT).show();
                 }
 

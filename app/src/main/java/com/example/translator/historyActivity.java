@@ -6,23 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.translator.DatabaseHelper.DatabaseHelper;
 
-import java.sql.Blob;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class historyActivity extends AppCompatActivity implements RecyclerViewAdapter.IMyItemClickListener{
@@ -104,7 +95,7 @@ public class historyActivity extends AppCompatActivity implements RecyclerViewAd
         Toast.makeText(getApplicationContext(),adapter.getItem(position).get("id")+" Positon: "+position,Toast.LENGTH_SHORT).show();
 
 
-        Intent intent=new Intent(this,TextTranslation.class);
+        Intent intent=new Intent(this, ShowHistoryTextTranslation.class);
         intent.putExtra("textExtracted",adapter.getItem(position).get("text"));
         intent.putExtra("textTranslation",adapter.getItem(position).get("translation"));
         this.startActivity(intent);
@@ -114,12 +105,18 @@ public class historyActivity extends AppCompatActivity implements RecyclerViewAd
     @Override
     public void onDeleteItemClick(int position) {
        // Toast.makeText(getApplicationContext(),"PAk", Toast.LENGTH_SHORT);
+
+           // Toast.makeText(getApplicationContext(),"Position: "+position+" Adapter position:"+adapter.getItem(position).get("id"),Toast.LENGTH_SHORT).show();
+
         String no=databaseHelper.deleteRecord("history",adapter.getItem(position).get("id"));
         if (no.equalsIgnoreCase("1")){
           //  Toast.makeText(getApplicationContext(),"Superb record Delted: "+no,Toast.LENGTH_SHORT).show();
         }else {
            //Toast.makeText(getApplicationContext(), "OOps record not deleted: "+no, Toast.LENGTH_SHORT).show();
         }
+
+
+
     }
 
 

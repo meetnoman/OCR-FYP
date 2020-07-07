@@ -33,6 +33,7 @@
             android:layout_gravity="start"
             android:layout_weight="1"
             android:paddingLeft="12dp"
+            android:textColor="@color/black"
             android:text="English To English Translation" />
 
             <Button
@@ -50,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_weight="1"
+            android:textColor="#99000000"
             android:text="14/12/2019, 1:48 PM" />
 
 
@@ -63,6 +65,7 @@
             android:id="@+id/textEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:visibility="gone"
              android:text="View Translation"
            />
@@ -73,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:text="View Translation"
+            android:textColor="#FF0E9C14"
             android:drawableEnd="@drawable/ic_arrow_forward_black_24dp"/>
     </LinearLayout>
     </androidx.cardview.widget.CardView>

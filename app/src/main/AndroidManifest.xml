@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TextEnterTranslation"></activity>
-        <activity android:name=".SplashScreen.splashScreen">
+        <activity android:name=".TextEnterTranslation"
+            android:windowSoftInputMode="stateVisible">
+
+        </activity>
+        <activity android:name=".SplashScreen.splashScreen"
+            android:theme="@style/AppNoTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,10 +24,10 @@
         <activity
             android:name=".LiveTextTranslation"
             android:theme="@style/AppNoTheme" />
-        <activity android:name=".TextTranslation" />
+        <activity android:name=".ShowHistoryTextTranslation" />
         <activity android:name=".historyActivity" />
+        <activity android:name=".TextTranslation" />
         <activity android:name=".TextExtracted" />
-        <activity android:name=".ImageViewActivity" />
         <activity
             android:name=".CameraViewActivity"
             android:theme="@style/AppNoTheme" />

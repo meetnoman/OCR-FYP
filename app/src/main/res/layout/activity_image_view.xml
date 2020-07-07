@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="12"
-    tools:context="com.example.translator.ImageViewActivity">
+    tools:context="com.example.translator.TextExtracted">
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/ImageView"

@@ -2,17 +2,22 @@ package com.example.translator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.translator.Helper.LanguageRemindHelper;
+import com.google.android.gms.dynamic.IFragmentWrapper;
 
 public class LanguageInputActivity extends AppCompatActivity {
     Button english,urdu,chinesse,detect;
     String intentString;
-
+    boolean detectLang,lang1,lang2,lang3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +32,65 @@ public class LanguageInputActivity extends AppCompatActivity {
         intentString=intent.getStringExtra("requestActivity");
 
 
+        openActivity();
+        setCheck();
+
     }
     public void SelectInputLanguage(View view){
+        boolean connection=false;
         if (view==detect){
-            LanguageRemindHelper.getInstance().setInputLanguage("Detect Language");
+            if (!isOnline(getApplicationContext())){
+                Toast.makeText(getApplicationContext(),"Internet is not connected",Toast.LENGTH_SHORT).show();
+            }else {
+                connection=true;
+                detectLang=true;
 
+                lang1=false;
+                lang2=false;
+                lang3=false;
+            }
         }
         if (view==english){
-            LanguageRemindHelper.getInstance().setInputLanguage("en");
+             if (!isOnline(getApplicationContext())){
+                Toast.makeText(getApplicationContext(),"Internet is not connected",Toast.LENGTH_SHORT).show();
+            }else {
+                 lang1=true;
+                connection = true;
+
+                 detectLang=false;
+                 lang2=false;
+                 lang3=false;
+             }
+
         }else if (view==urdu){
-            LanguageRemindHelper.getInstance().setInputLanguage("ur");
+            if (!isOnline(getApplicationContext())){
+                Toast.makeText(getApplicationContext(),"Internet is not connected",Toast.LENGTH_SHORT).show();
+            }else {
+                lang2=true;
+                connection=true;
+
+                detectLang=false;
+                lang1=false;
+                lang3=false;
+            }
         }
         else if (view==chinesse){
-            LanguageRemindHelper.getInstance().setInputLanguage("zh");
+            if (!isOnline(getApplicationContext())){
+                Toast.makeText(getApplicationContext(),"Internet is not connected",Toast.LENGTH_SHORT).show();
+            }else {
+                connection=true;
+                lang3=true;
+
+                detectLang=false;
+                lang1=false;
+                lang2=false;
+             }
         }
+        setCheck();
+
+        if (connection){
         goTobackActivity();
+    }
     }
 
 
@@ -69,4 +118,86 @@ public class LanguageInputActivity extends AppCompatActivity {
         }
         finish();
     }
+
+
+    public static boolean isOnline(Context context) {
+        boolean result = false;
+        if (context != null) {
+            final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm != null) {
+                final NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+                if (networkInfo != null) {
+                    result = networkInfo.isConnected();
+                }
+            }
+        }
+        return result;
+    }
+
+    public  void  setCheck(){
+        if (detectLang){
+            LanguageRemindHelper.getInstance().setInputLanguage("Detect Language");
+            detect.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+
+            english.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+            chinesse.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+            urdu.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+        }
+        else if (lang1){
+            LanguageRemindHelper.getInstance().setInputLanguage("en");
+            english.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+
+            chinesse.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+            urdu.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+            detect.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+        }
+        else if (lang2){
+            LanguageRemindHelper.getInstance().setInputLanguage("ur");
+            urdu.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+
+            english.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+            chinesse.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+            detect.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+
+        }
+        else if (lang3){
+            LanguageRemindHelper.getInstance().setInputLanguage("zh");
+            chinesse.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0);
+
+            english.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+            urdu.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+            detect.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+
+        }
+
+    }
+
+
+    public void openActivity(){
+        String language=LanguageRemindHelper.getInstance().getInputLanguage();
+        if (language.equalsIgnoreCase("Detect Language")){
+            detectLang=true;
+
+
+
+        }
+       else if (language.equalsIgnoreCase("en")){
+            lang1=true;
+
+
+        }
+        else if (language.equalsIgnoreCase("ur")){
+            lang2=true;
+
+
+        }
+       else if (language.equalsIgnoreCase("zh")){
+            lang3=true;
+
+
+        }
+
+    }
+
+
 }
